@@ -77,7 +77,7 @@
             pthread_cond_wait(&server->job_not_full, &server->job_mutex);
         }
         //add client socket to queue
-        insert_job(server, connected_socket);
+        insertJob(server, connected_socket);
         //signal workers that there is a client needing assistance
         pthread_cond_signal(&server->job_not_empty);
         //unlock job queue
@@ -86,15 +86,4 @@
     	return 0;
 	}
 
-
-	//method to put client job in job queue
-	void insert_job(server *server, int socket) {
-    	//printf("%d\n", socket);
-    	//insert into client buffer
-    	jobs[server->job_rear] = socket;
-    	//increment the job_rear
-    	server->job_rear = (++server->job_rear) % MAX_BUF_SIZE;
-	//increment the job_count
-    	++server->job_count;
-	}
 
