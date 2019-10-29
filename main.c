@@ -49,7 +49,7 @@
 	//create server struct
     	server *server = malloc(sizeof(*server));
     	//initialize the server. Send to initialize server method
-    	initServer(server);
+    	server_init(server);
     	//create worker thread pool
     	pthread_t workers[MAX_BUF_SIZE];
     	for (int i = 0; i < MAX_BUF_SIZE; i++) {
