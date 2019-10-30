@@ -55,7 +55,7 @@ pthread_cond_t log_not_full;
 //function prototypes
 void initServer(server *server);
 void deinitServer(server *server);
-void insertLog(server *server, char *item);
+void insertLog(server *server, char *item, int correct);
 void insertJob(server *server, int socket);
 int removeLog(server *server, char **server_buf);
 int removeJob(server *server);
