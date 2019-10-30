@@ -53,11 +53,11 @@ pthread_cond_t log_not_full;
 
 
 //function prototypes
-void server_init(server *server);
-void server_deinit(server *server);
-void server_insert_log(server *server, char *item);
+void initServer(server *server);
+void deinitServer(server *server);
+void insertLog(server *server, char *item);
 void insertJob(server *server, int socket);
-int server_remove_log(server *server, char **server_buf);
-int server_remove_job(server *server);
-int open_listenfd(int port);
+int removeLog(server *server, char **server_buf);
+int removeJob(server *server);
+int openListenfd(int port);
 int findWord(char *word);

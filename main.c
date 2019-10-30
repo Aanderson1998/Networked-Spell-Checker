@@ -42,14 +42,14 @@
     	printf("Socket:\t%d\n", PORT);
     	//open listening socket on the port
     	int listen_socket;
-    	if ((listen_socket = open_listenfd(PORT)) < 0) {
+    	if ((listen_socket = openListenfd(PORT)) < 0) {
         	printf("Couldn't open listening socket");
         	exit(0);
     	}
 	//create server struct
     	server *server = malloc(sizeof(*server));
     	//initialize the server. Send to initialize server method
-    	server_init(server);
+    	initServer(server);
     	//create worker thread pool
     	pthread_t workers[MAX_BUF_SIZE];
     	for (int i = 0; i < MAX_BUF_SIZE; i++) {
