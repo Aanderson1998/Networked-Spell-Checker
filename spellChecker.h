@@ -61,3 +61,4 @@ char *removeLog(server *server);
 int removeJob(server *server);
 int openListenfd(int port);
 int findWord(char *word);
+void *workerThread(server *server);
