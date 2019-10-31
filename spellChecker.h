@@ -57,7 +57,7 @@ void initServer(server *server);
 void deinitServer(server *server);
 void insertLog(server *server, char *item, int correct);
 void insertJob(server *server, int socket);
-int removeLog(server *server, char **server_buf);
+char *removeLog(server *server);
 int removeJob(server *server);
 int openListenfd(int port);
 int findWord(char *word);
