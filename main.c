@@ -53,11 +53,11 @@
     	//create worker thread pool
     	pthread_t workers[MAX_BUF_SIZE];
     	for (int i = 0; i < MAX_BUF_SIZE; i++) {
-        pthread_create(&workers[i], NULL, worker_thread, (void *)server);
+        pthread_create(&workers[i], NULL, workerThread, (void *)server);
     	}
     	//create logger thread
     	pthread_t logger;
-    	pthread_create(&logger, NULL, logger_thread, (void *) server);
+    	pthread_create(&logger, NULL, loggerThread, (void *) server);
     	//create socket variable for client connections
     	int connected_socket;
     	char *str = "Hello you are connected to the spell checker network. Please type in a word to see if it is spelled correctly.\n";
