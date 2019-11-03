@@ -60,7 +60,7 @@
     	pthread_create(&logger, NULL, loggerThread, (void *) server);
     	//create socket variable for client connections
     	int connected_socket;
-    	char *str = "Hello you are connected to the spell checker network. Please type in a word to see if it is spelled correctly. To disconnect please type .. \n";
+    	char *str = "Hello you are connected to the spell checker network. Please type in a word to see if it is spelled correctly\n. To disconnect please type .. \n";
     	//accepting client jobs
     	while (1) {
         	if ((connected_socket = accept(listen_socket, NULL, NULL)) < 1) {

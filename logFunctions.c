@@ -15,6 +15,7 @@
 	answer="OK";
 	}else{
 	answer="MISSPELLED";
+	}
 	//using strcpy and strcat to write total log input which is word is OK/MISSPELLED depending on answer
     	strcpy(logInput, word);
     	strcat(logInput, " is ");

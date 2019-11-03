@@ -1,6 +1,6 @@
 #include "spellChecker.h"
 
-	void *workerthread(void *serve) {
+	void *workerThread(void *serve) {
 	server *server=serve;
     	int bytes;
     	char *word;
@@ -34,7 +34,7 @@
                 	exit(0);
             		}
             		//search for word
-            		int correct = lookup(word);
+            		int correct = findWord(word);
 					if (correct==1){
 						answer="OK\n";
 					}else{
@@ -48,7 +48,7 @@
                 		pthread_cond_wait(&server->log_not_full, &server->log_mutex);
             		}
 					//insert into log queue
-            		insert_log(server, word, correct);
+            		insertLog(server, word, correct);
             		//signal log queue
             		pthread_cond_signal(&server->log_not_empty);
             		//unlock the mutex
