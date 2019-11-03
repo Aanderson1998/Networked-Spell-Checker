@@ -33,10 +33,6 @@ char *logs[MAX_BUF_SIZE];
 
 //struct for server
 typedef struct {
-char **log_buf;
-int *job_buf;
-int job_len;
-int log_len;
 int job_count;
 int log_count;
 int job_front;
