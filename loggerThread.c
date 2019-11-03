@@ -1,6 +1,7 @@
 #include "spellChecker.h"
 
-	void *loggerThread(server *server){
+	void *loggerThread(void *serve){
+	server *server=serve;
 	while(1) {
         	//lock the log queue
         	pthread_mutex_lock(&server->log_mutex);

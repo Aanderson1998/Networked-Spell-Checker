@@ -1,6 +1,7 @@
 #include "spellChecker.h"
 
-	void *workerthread(server *server) {
+	void *workerthread(void *serve) {
+	server *server=serve;
     	int bytes;
     	char *word;
     	char *getWord = "word input> ";
@@ -24,11 +25,12 @@
             		bytes= (int) recv(socket, word, WORD_SIZE, 0);
             		//if there was an error
             		if (bytes < 0) {
-						char *error = "Error receiving message";
+				char *error = "Error receiving message";
                 		send(socket, error, strlen(error), 0);
                 		continue;
             		}
-            		if(strcmp(word, "EXIT\n") == 0) {
+            		if(strcmp(word, "..\n") == 0) {
+			printf("client disconnected. Goodbye! Thank you for using spellChecker\n");
                 	exit(0);
             		}
             		//search for word
