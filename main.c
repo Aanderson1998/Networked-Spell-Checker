@@ -58,6 +58,11 @@
 	//create logger thread
 	pthread_t logger;
 	pthread_create(&logger, NULL, loggerThread, (void *) server);
+	//open log file
+	if ((LOG = fopen("log.txt", "w+")) == NULL) {
+		printf("Error opening log file");
+		exit(0);
+	}
 	//create socket variable for client connections
     	int socket;
 	char *str = "Hello you are connected to the spell checker network. Please type in a word to see if it is spelled correctly\n. To disconnect please type .. \n";
