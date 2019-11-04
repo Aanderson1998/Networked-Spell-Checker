@@ -29,7 +29,8 @@ int PORT;
 int jobs[MAX_BUF_SIZE];
 //global pointer array to hold client logged data
 char *logs[MAX_BUF_SIZE];
-
+//global variable to hold number of workers
+int NUM_WORKERS=4;
 
 //struct for server
 typedef struct {

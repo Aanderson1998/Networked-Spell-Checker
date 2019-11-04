@@ -51,8 +51,8 @@
 	//initialize server
 	initServer(server);
 	//create worker thread pool
-	pthread_t workers[MAX_BUF_SIZE];
-	for (int i = 0; i < MAX_BUF_SIZE; i++) {
+	pthread_t workers[NUM_WORKERS];
+	for (int i = 0; i < NUM_WORKERS; i++) {
 		pthread_create(&workers[i], NULL, workerThread, (void *)server);
 	}
 	//create logger thread
