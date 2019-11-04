@@ -14,7 +14,7 @@
 		char *result = removeLog(server);
 		//write results to log file
 		fprintf(LOG, "%s\n", result);
-		//clean log file
+		//clear output buffer
 		fflush(LOG);
 		//signal log_not_full condition variable
 		pthread_cond_signal(&server->log_not_full);
