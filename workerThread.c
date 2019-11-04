@@ -50,9 +50,7 @@
 				answer="MISSPELLED\n";
 				}
 			//send client answer
-			char *str="word is ";
-			strcat(str,answer);
-			send(socket, str, strlen(str), 0);
+			send(socket, answer, strlen(answer), 0);
 			pthread_mutex_lock(&server->log_mutex);
 			//check if log queue is full
 			while(server->log_rear == server->log_front && server->log_count == MAX_BUF_SIZE) {

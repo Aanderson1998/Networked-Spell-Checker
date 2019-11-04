@@ -10,7 +10,7 @@
 
 
 //constant for default socket port
-#define DEFAULT_SOCKET 3999
+#define DEFAULT_SOCKET 4000
 //constant for default dictionary
 #define DEFAULT_DICTIONARY "dictionary.txt"
 //constant for maximum word size
