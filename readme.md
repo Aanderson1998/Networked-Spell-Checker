@@ -30,7 +30,6 @@ If all slots are empty in either job or log queue then there is a wait on the jo
 Adding mutex and condition variables to multithreaded server ensures synchronization and mutual exclusion, which allows for accurate results and data when using program 
 
 
-
 ## Usage
 To use program client must open new terminal and connect to localhost of server. To do this client types in ssh telnet localhost PORT. PORT is the listening socket of the server which displays on the screen of the server program
 
