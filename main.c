@@ -38,14 +38,13 @@
 			exit(0);
 			}
 		}
-	printf("Dictionary:\t%s\n", argv[1]);
-	printf("Socket:\t%d\n", PORT);
 	//open listening socket on the port
 	int listenSocket;
 	if ((listenSocket = openListenfd(PORT)) < 0) {
 		printf("Couldn't open listening socket");
 		exit(0);
 	}
+	printf("Listening Socket: %d\n", PORT);
 	//create server struct
 	server *server = malloc(sizeof(*server));
 	//initialize server
@@ -65,7 +64,7 @@
 	}
 	//create socket variable for client connections
     	int socket;
-	char *str = "Hello you are connected to the spell checker network. Please type in a word to see if it is spelled correctly\n. To disconnect please type .. \n";
+	char *str = "Hello you are connected to the spell checker network. Please type in a word to see if it is spelled correctly\n To disconnect please press escape button \n";
 	//connect to client
 	while (1) {
 		if ((socket = accept(listenSocket, NULL, NULL)) < 1) {

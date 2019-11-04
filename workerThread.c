@@ -29,9 +29,10 @@
 				send(socket, error, strlen(error), 0);
 				continue;
 			}
-			if(strcmp(word, "..\n") == 0){
-				printf("client disconnected. Goodbye! Thank you for using spellChecker\n");
-				exit(0);
+			if(word[0] == 27) {
+                		send(socket, "Goodbye! Thank you for using the spell Checker.\n", strlen("Goodbye! Thankyou for using the spell checker.\n"), 0);
+				printf("client disconnected.");
+                		break;
 			}
 			//search for word
 			int correct = findWord(word);
