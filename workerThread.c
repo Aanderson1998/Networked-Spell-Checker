@@ -39,7 +39,7 @@
 			//if escape button was pressed send goodbye message and print client disconnected
 			if(word[0] == 27) {
                 		send(socket, "Goodbye! Thank you for using the spell Checker.\n", strlen("Goodbye! Thankyou for using the spell checker.\n"), 0);
-				printf("client disconnected.");
+				printf("client disconnected.\n");
                 		break;
 			}
 			//search for word
@@ -50,7 +50,9 @@
 				answer="MISSPELLED\n";
 				}
 			//send client answer
-			send(socket, answer, strlen(answer), 0);
+			char *str="word is ";
+			strcat(str,answer);
+			send(socket, str, strlen(str), 0);
 			pthread_mutex_lock(&server->log_mutex);
 			//check if log queue is full
 			while(server->log_rear == server->log_front && server->log_count == MAX_BUF_SIZE) {

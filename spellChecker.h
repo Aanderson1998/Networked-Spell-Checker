@@ -10,7 +10,7 @@
 
 
 //constant for default socket port
-#define DEFAULT_SOCKET 8888
+#define DEFAULT_SOCKET 3999
 //constant for default dictionary
 #define DEFAULT_DICTIONARY "dictionary.txt"
 //constant for maximum word size
@@ -50,7 +50,6 @@ pthread_cond_t log_not_full;
 
 //function prototypes
 void initServer(server *server);
-void deinitServer(server *server);
 void insertLog(server *server, char *item, int correct);
 void insertJob(server *server, int socket);
 char *removeLog(server *server);

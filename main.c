@@ -66,14 +66,14 @@
 	//create socket variable for client connections
     	int socket;
 	//welcome message to send to client when connected
-	char *str = "Hello you are connected to the spell checker network. Please type in a word to see if it is spelled correctly\n To disconnect please press escape button \n";
+	char *str = "Hello you are connected to the spell checker network. Please type in a word to see if it is spelled correctly\nTo disconnect please press escape button \n";
 	//connect to client
 	while (1) {
 		if ((socket = accept(listenSocket, NULL, NULL)) < 1) {
 			perror("Unable to connect client");
 			break;
 		}
-	printf("Client is connected\n");
+	printf("Client is connected. Socket descriptor: %d\n", socket);
 	//send message that client is connected and can start using spell checker
 	send(socket, str, strlen(str), 0);
 	//lock job_mutex
