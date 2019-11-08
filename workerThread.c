@@ -14,7 +14,7 @@
 		//lock job mutex
 		pthread_mutex_lock(&server->job_mutex);
 		//check if job queue is empty
-		while (server->job_front == server->job_front && server->job_count == 0) {
+		while (server->job_front == server->job_rear && server->job_count == 0) {
 			//if empty do a wait on job_not_empty condition variable
 			pthread_cond_wait(&server->job_not_empty, &server->job_mutex);
 		}
@@ -53,7 +53,7 @@
 			send(socket, answer, strlen(answer), 0);
 			pthread_mutex_lock(&server->log_mutex);
 			//check if log queue is full
-			while(server->log_rear == server->log_front && server->log_count == MAX_BUF_SIZE) {
+			while(server->log_count == MAX_BUF_SIZE) {
 				//if it is do a wait on log_not_full condition variable
 				pthread_cond_wait(&server->log_not_full, &server->log_mutex);
 				}

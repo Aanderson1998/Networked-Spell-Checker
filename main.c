@@ -4,46 +4,46 @@
 	//no arguments passed means use default dictionary and socket
 	if (argc == 1) {
 		if (!(DICTIONARY = fopen(DEFAULT_DICTIONARY, "r"))) {
-			printf("could not open dictionary\n");
-			exit(0);
+			perror("Could not open dictionary");
+			exit(EXIT_FAILURE);
 		}
 	PORT = DEFAULT_SOCKET;
 	}
-    	//have one argument meaning it is a dictionary or socket, figure out which
+	//have one argument meaning it is a dictionary or socket, figure out which
 	else if (argc == 2) {
 	char *ptr;
-	//check if it is an integer meaning its a port
-	if (!(PORT = (int) strtol(argv[1], &ptr, 10))) {
-	//if not assume it's a dictionary
+        //check to see if it is a port first. If it does not work
+        if (!(PORT = (int) strtol(argv[1], &ptr, 10))) {
+            	//assume it's a dictionary
 		if (!(DICTIONARY = fopen(argv[1], "r"))) {
-			printf("Could not open dictionary\n");
-			exit(0);
-		}
-		PORT = DEFAULT_SOCKET;
-	}
-	//passed specific dictionary and socket
-	}else{
-		if (!(DICTIONARY = fopen(argv[1], "r"))) {
-			printf("Could not open dictionary\n");
-			exit(0);
-		}
-		char *ptr;
-		if (!(PORT = (int) strtol(argv[2], ptr, 10))) {
-			printf("Could not open socket\n");
-			exit(0);
-		}
-		//check to see if port is legal
-		if (PORT < 1024 || PORT > 65535) {
-			perror("Port entered cannot be used");
-			exit(0);
-			}
-		}
-	//open listening socket on the port. Print error message if problem opening up socket to listen
+                	perror("Unknown dictionary");
+                	exit(EXIT_FAILURE);
+            		}
+            	PORT = DEFAULT_SOCKET;
+        	}
+    	}
+    	//passed specific dictionary and socket
+    	else {
+        	if (!(DICTIONARY = fopen(argv[1], "r"))) {
+            		perror("Could not open dictionary");
+            		exit(EXIT_FAILURE);
+        	}
+        	char *ptr;
+        	if (!(PORT = (int) strtol(argv[2], &ptr, 10))) {
+            		perror("Could not open socket");
+            		exit(EXIT_FAILURE);
+        	}
+        	//if the port isn't a legal port
+        	if (PORT < 1024 || PORT > 65535) {
+            		perror("Port entered cannot be used (Must be between 1025 & 65534)");
+            		exit(EXIT_FAILURE);
+        	}
+    	}
 	int listenSocket;
-	if ((listenSocket = openListenfd(PORT)) < 0) {
-		printf("Couldn't open listening socket");
-		exit(0);
-	}
+    	if ((listenSocket = openListenfd(PORT)) < 0) {
+        	perror("Couldn't open listening socket");
+        	exit(EXIT_FAILURE);
+    	}
 	//print listening socket to screen
 	printf("Listening Socket: %d\n", PORT);
 	//create server struct
@@ -73,13 +73,13 @@
 			perror("Unable to connect client");
 			break;
 		}
-	printf("Client is connected. Socket descriptor: %d\n", socket);
+	printf("\nClient is connected. Socket descriptor: %d\n", socket);
 	//send message that client is connected and can start using spell checker
 	send(socket, str, strlen(str), 0);
 	//lock job_mutex
 	pthread_mutex_lock(&server->job_mutex);
 	//check if job queue is full. If it is put a wait on job_not_full condition variable
-	while (server->job_front == server->job_rear && server->job_count == MAX_BUF_SIZE) {
+	while (server->job_count == MAX_BUF_SIZE) {
 		pthread_cond_wait(&server->job_not_full, &server->job_mutex);
 		}
 	//add job to job queue

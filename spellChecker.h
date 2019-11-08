@@ -7,7 +7,7 @@
 #include <netinet/in.h>
 #include <sys/types.h>
 #include <pthread.h>
-
+#include <ctype.h>
 
 //constant for default socket port
 #define DEFAULT_SOCKET 4000
@@ -16,8 +16,9 @@
 //constant for maximum word size
 #define WORD_SIZE 100
 //constant for maximum buffer size
-#define MAX_BUF_SIZE 5
-
+#define MAX_BUF_SIZE 3
+//constant for maximum buffer size
+#define NUM_WORKERS 2
 
 // global variable. file pointer to dictionary file
 FILE *DICTIONARY;
@@ -29,8 +30,7 @@ int PORT;
 int jobs[MAX_BUF_SIZE];
 //global pointer array to hold client logged data
 char *logs[MAX_BUF_SIZE];
-//global variable to hold number of workers
-int NUM_WORKERS=4;
+
 
 //struct for server
 typedef struct {
